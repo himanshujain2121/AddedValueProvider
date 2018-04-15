@@ -12,18 +12,19 @@ import { DepartmentComponent } from './department/department.component';
 import { EmployeeListComponent } from './employee/employee-list/employee-list.component';
 import { BooksComponent } from './books/books.component';
 import { BooksListComponent } from './books/books-list/books-list.component';
+import { PostsComponent } from './posts/posts.component';
+import { OrderComponent } from './order/order.component';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 // service
 import { EmployeeService } from './services/employee/employee.service';
 import { NewemployeeService } from './services/employee/newemployee.service';
-import { PostsComponent } from './posts/posts.component';
-import { OrderComponent } from './order/order.component';
-
 import { PostInterceptorService } from './services/posts/post-interceptor.service';
-
+// value Provider
 import { APP_PROVIDER , AppConfig } from './services/valueProvider/appProvider';
-
 import { VALUE_PROVIDER } from './services/valueProvider/valueProvider';
+// Environment
 import { environment } from '../environments/environment';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +34,8 @@ import { environment } from '../environments/environment';
     BooksComponent,
     BooksListComponent,
     PostsComponent,
-    OrderComponent
+    OrderComponent,
+    PagenotfoundComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +47,9 @@ import { environment } from '../environments/environment';
       {path: 'department' ,component :DepartmentComponent},
       {path: 'book' ,component :BooksComponent},
       {path: 'order' ,component :OrderComponent},
-      {path: 'posts' ,component :PostsComponent}
+      {path: 'posts' ,component :PostsComponent},
+      {path: '' , redirectTo:'employee',pathMatch:'full'},
+      {path: '**' ,component :PagenotfoundComponent}
     ])
   ],
   providers: [
