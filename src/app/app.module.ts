@@ -1,7 +1,6 @@
 // common Module
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // custom Module
 import { SharedModule } from './shared/shared.module';
@@ -41,8 +40,9 @@ import { environment } from '../environments/environment';
   imports: [
     BrowserModule,
     SharedModule,
+    PostsModule,
     RoutingModule,
-    PostsModule
+   
   ],
   providers: [
     // EmployeeService,
