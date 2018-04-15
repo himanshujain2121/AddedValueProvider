@@ -8,8 +8,11 @@ import { RouterModule } from '@angular/router';
 import { RoutingModule } from '../routing/routing.module';
 // component
 import { PostsComponent } from './posts.component';
+import { PostsDetailsComponent } from './posts-details/posts-details.component';
+import { PostsListComponent } from './posts-list/posts-list.component';
 // service
 import { PostInterceptorService } from '../services/posts/post-interceptor.service';
+
 
 
 
@@ -19,10 +22,11 @@ import { PostInterceptorService } from '../services/posts/post-interceptor.servi
   imports: [
     SharedModule,
     RouterModule.forChild([
-      {path: 'posts', component:PostsComponent}
+      {path: 'posts', component:PostsComponent},
+      { path: 'posts/:id', component: PostsDetailsComponent }
     ])
   ],
-  declarations: [PostsComponent],
+  declarations: [PostsComponent, PostsDetailsComponent, PostsListComponent],
   providers:[
     { provide: HTTP_INTERCEPTORS, useClass: PostInterceptorService, multi: true },
   ]
