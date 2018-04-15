@@ -15,14 +15,18 @@ import { BooksComponent } from './books/books.component';
 import { BooksListComponent } from './books/books-list/books-list.component';
 import { OrderComponent } from './order/order.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { LoginComponent } from './login/login.component';
 // service
 import { EmployeeService } from './services/employee/employee.service';
 import { NewemployeeService } from './services/employee/newemployee.service';
+import { LoginService } from './services/login/login.service';
 // value Provider
 import { APP_PROVIDER , AppConfig } from './services/valueProvider/appProvider';
 import { VALUE_PROVIDER } from './services/valueProvider/valueProvider';
 // Environment
 import { environment } from '../environments/environment';
+
+
 
 
 
@@ -35,7 +39,8 @@ import { environment } from '../environments/environment';
     BooksComponent,
     BooksListComponent,
     OrderComponent,
-    PagenotfoundComponent
+    PagenotfoundComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +53,9 @@ import { environment } from '../environments/environment';
     // EmployeeService,
     { provide: EmployeeService, useClass: NewemployeeService },
     { provide: VALUE_PROVIDER, useValue: environment },
-    { provide: APP_PROVIDER, useValue: AppConfig }],
+    { provide: APP_PROVIDER, useValue: AppConfig },
+     LoginService
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
