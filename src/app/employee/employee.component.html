@@ -1,0 +1,46 @@
+<h1 [ngClass]=" { 'alert alert-success' : visible }">
+    Employee Component
+</h1>
+
+
+{{title}}
+<div [hidden]="visible" [innerText]="title">
+ 
+</div>
+
+<div *ngIf="visible" [innerText]="title">
+ 
+</div>
+
+<!-- 
+<div *ngIf="!visible" [innerText]="title">
+ 
+</div> -->
+
+{{visible}}
+
+<button type="button" (click)="toggle()">Toggle</button> 
+<hr>
+{{selectedEmployee| json}}
+<hr>
+
+<!-- <div *ngIf="visible"> -->
+    <app-employee-list [employeeList]="employee"
+    [title]="title" (selectedEmployee)="receiveFromParent($event)"></app-employee-list>
+<!-- </div> -->
+
+
+<div [ngSwitch]="role">
+    <div *ngSwitchCase="'User'">
+            This is User Section.
+    </div>
+    <div *ngSwitchCase="'Admin'">
+        This is Admin Section.
+    </div>
+    <div *ngSwitchCase="'Super User'">
+        This is Super User Section.
+    </div>
+    <div *ngSwitchDefault>
+            This is default view.
+    </div>
+</div>

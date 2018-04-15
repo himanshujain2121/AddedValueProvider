@@ -1,0 +1,49 @@
+<h1>
+  Post
+</h1>
+
+{{downloadedBytes}}
+
+{{post | json}} {{postForm.valid | json }} {{postForm.invalid | json }} {{postForm.pristine | json }} {{postForm.dirty |
+json }} {{postForm.value | json }}
+<form #postForm="ngForm" novalidate (submit)="addPost();postForm.reset()">
+  <div class="form-group">
+    <input required class="form-control" #userid="ngModel" [(ngModel)]="post.userId" name="userid" type="number" placeholder="UserId">
+    <div class="alert alert-danger" *ngIf="userid.invalid && userid.dirty">
+      Please Enter UserId. 
+      {{userid.valid | json }} 
+      {{userid.invalid | json }}
+      {{userid.pristine | json }} 
+      {{userid.dirty | json}}
+      {{userid.value | json }}\
+      {{userid.errors | json }}
+    </div>
+  </div>
+  <div class="form-group">
+    <input required #title minlength="4" maxlength="14" class="form-control" [(ngModel)]="post.title" name="title"
+      type="text" placeholder="Title">
+    <div class="alert alert-danger" *ngIf="title.invalid && title.dirty">
+        Please enter title.
+        {{title.errors | json}}
+    </div> 
+    <!-- {{title.errors.required | json }} -->
+    <!-- <div class="alert alert-danger" *ngIf="title.errors !== undefined &&  title.errors.required">
+      Please enter title.
+    </div>
+    <div class="alert alert-danger" *ngIf="title.errors.minLength">
+      Please enter min 4 chars.
+    </div> -->
+
+  </div>
+  <div class="form-group">
+    <input required class="form-control" type="text" [(ngModel)]="post.body" name="body" placeholder="Body">
+  </div>
+  <div class="form-group">
+    <button [disabled]="postForm.invalid" #btnSubmit type="submit" class="btn btn-primary">Add Post</button>
+    {{btnSubmit.type | json}}
+  </div>
+</form>
+<!-- {{postsList | json}} -->
+
+<button type="button" (click)="updatePost()" class="btn btn-success">Update Post</button>
+<button type="button" (click)="deletePost()" class="btn btn-success">Delete Post</button>

@@ -1,0 +1,47 @@
+<h1>{{title}}</h1>
+
+
+{{employeeList | json}}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Salary
+            </th>
+            <th>
+              Select
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let emp of employeeList">
+            <td>
+                {{emp.id}}
+            </td>
+            <td>
+                {{emp.name}}
+            </td>
+            <td>
+                {{emp.email}}
+            </td>
+            <td>
+                {{emp.salary}}
+            </td>
+            <td>
+              <button (click)="selectEmployee(emp)" type="button" class="btn btn-primary">
+                Select
+              </button>
+            </td>
+        </tr>
+    </tbody>
+</table>

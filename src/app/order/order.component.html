@@ -1,0 +1,71 @@
+<h1>
+  Order Form.
+</h1>
+
+{{orderForm.pristine | json}} {{orderForm.value | json}}
+
+<form [formGroup]="orderForm" (submit)="saveOrder()">
+  <div class="form-group">
+    <input type="number" class="form-control" formControlName="orderId" placeholder="Order Id"> 
+    {{orderForm.get('orderId').errors | json }}
+    <div class="alert alert-danger" *ngIf="orderForm.get('orderId').errors">
+        Please enter orderID.
+    </div>
+  </div>
+  <div class="form-group">
+    <input type="text" class="form-control" formControlName="customerName" placeholder="Customer Name">
+  </div>
+  <div class="form-group">
+    <input type="text" class="form-control" formControlName="email" placeholder="Email">
+  </div>
+  <div class="form-group">
+    <input type="text" class="form-control" formControlName="mobile" placeholder="Mobile">
+  </div>
+
+  <div formGroupName="address">
+    <div class="form-group">
+      <input type="text" class="form-control" formControlName="addressLine1" placeholder="Address Line1">
+      {{orderForm.get('address.addressLine1').errors | json }}
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" formControlName="addressLine2" placeholder="Address Line2">
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" formControlName="city" placeholder="City">
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" formControlName="pin" placeholder="Pin">
+    </div>
+  </div>
+  <div class="form-group">
+    <button type="button" class="btn btn-success" (click)="addCard()">Add Cards</button>
+  </div>
+  <div formArrayName="cards" class="form-group">
+    <div *ngFor="let card of orderForm['controls'].cards['controls'];let i=index">
+      <div [formGroupName]="i" class="form-group">
+        <div class="form-group">
+          <input type="number" class="form-control" formControlName="cardNumber" placeholder="Card Number">
+        </div>
+        <div class="form-group">
+          <input type="number" class="form-control" formControlName="expMonth" placeholder="Expiry Month">
+          {{orderForm.get(['cards',i, 'expMonth']).errors | json }}
+        </div>
+        <div class="form-group">
+          <input type="number" class="form-control" formControlName="expYear" placeholder="Expiry Year">
+        </div>
+        <div class="form-group">
+          <input type="number" class="form-control" formControlName="cvv" placeholder="CVV">
+        </div>
+      </div>
+      <div class="form-group">
+        <button type="button" class="btn btn-danger" (click)="removeCard(i)">Remove Card</button>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <button type="submit" [disabled]="orderForm.invalid" class="btn btn-primary">Save Order</button>
+  </div>
+</form>
+
+<!-- <input type="text" formControlName="name" name="userName" placeholder="UserName" class="form-control"> -->
