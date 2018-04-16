@@ -13,6 +13,7 @@ import { PostsListComponent } from './posts-list/posts-list.component';
 // service
 import { PostInterceptorService } from '../services/posts/post-interceptor.service';
 import { PostsEditComponent } from './posts-edit/posts-edit.component';
+import { AuthGuard } from '../services/guards/auth.guard';
 
 
 
@@ -23,7 +24,7 @@ import { PostsEditComponent } from './posts-edit/posts-edit.component';
   imports: [
     SharedModule,
     RouterModule.forChild([
-      {path: 'posts', component:PostsComponent,
+      {path: 'posts', component:PostsComponent,canActivate:[AuthGuard],
       children: [
         { path: ':id', component: PostsDetailsComponent },
         { path: ':/edit/:userid', component: PostsEditComponent }

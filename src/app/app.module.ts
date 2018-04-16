@@ -25,6 +25,7 @@ import { APP_PROVIDER , AppConfig } from './services/valueProvider/appProvider';
 import { VALUE_PROVIDER } from './services/valueProvider/valueProvider';
 // Environment
 import { environment } from '../environments/environment';
+import { AuthGuard } from './services/guards/auth.guard';
 
 
 
@@ -54,7 +55,7 @@ import { environment } from '../environments/environment';
     { provide: EmployeeService, useClass: NewemployeeService },
     { provide: VALUE_PROVIDER, useValue: environment },
     { provide: APP_PROVIDER, useValue: AppConfig },
-     LoginService
+     LoginService,AuthGuard
     ],
   bootstrap: [AppComponent]
 })
