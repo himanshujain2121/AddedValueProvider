@@ -6,7 +6,7 @@ import { HttpEventType } from '@angular/common/http';
   selector: 'app-posts',
   templateUrl: './posts.component.html',
   styleUrls: ['./posts.component.css'],
-  providers: [{ provide: PostsService, useClass: PostsService }]
+  providers: []
 })
 export class PostsComponent implements OnInit {
   postsList: Posts[];
@@ -30,13 +30,6 @@ export class PostsComponent implements OnInit {
       },
       (err) => console.log(err)
     )
-
-    this.postService.getPosts().subscribe((res) => {
-      this.postsList = res;
-    },
-      (error) => {
-        console.log(error)
-      });
   }
 
   addPost() {
