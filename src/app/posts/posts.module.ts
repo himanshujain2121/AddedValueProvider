@@ -12,6 +12,7 @@ import { PostsDetailsComponent } from './posts-details/posts-details.component';
 import { PostsListComponent } from './posts-list/posts-list.component';
 // service
 import { PostInterceptorService } from '../services/posts/post-interceptor.service';
+import { PostsEditComponent } from './posts-edit/posts-edit.component';
 
 
 
@@ -22,11 +23,16 @@ import { PostInterceptorService } from '../services/posts/post-interceptor.servi
   imports: [
     SharedModule,
     RouterModule.forChild([
-      {path: 'posts', component:PostsComponent},
-      { path: 'posts/:id', component: PostsDetailsComponent }
+      {path: 'posts', component:PostsComponent,
+      children: [
+        { path: ':id', component: PostsDetailsComponent },
+        { path: ':/edit/:userid', component: PostsEditComponent }
+      ]
+      },
+      //{ path: 'posts/:id', component: PostsDetailsComponent }
     ])
   ],
-  declarations: [PostsComponent, PostsDetailsComponent, PostsListComponent],
+  declarations: [PostsComponent, PostsDetailsComponent, PostsListComponent, PostsEditComponent],
   providers:[
     { provide: HTTP_INTERCEPTORS, useClass: PostInterceptorService, multi: true },
   ]
