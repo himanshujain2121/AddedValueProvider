@@ -28,6 +28,7 @@ import { PostsService } from '../services/posts/posts.service';
     RouterModule.forChild([
       { path: 'posts', component:PostsComponent,
          canActivate:[AuthGuard],
+         canActivateChild:[AuthGuard],
          resolve: { postList:PostResolveGuard},
       children: [
         { path: ':id', component: PostsDetailsComponent },
